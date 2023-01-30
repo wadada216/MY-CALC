@@ -1,24 +1,66 @@
-import logo from './logo.svg';
 import './App.css';
+
+function Button({text}){
+  function handleClick() {
+    alert({text});
+  }
+  
+  return (
+    <button onClick={handleClick}>
+      {text}
+    </button>
+  );
+}
+
+function DisplayText({text}) {
+  return (
+    <h1>{text}</h1>
+      
+  );
+}
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>
+      <DisplayText text={'display'}/>
+      </div>
+      <div>
+        <section>
+          <Button text={'7'}/>
+          <Button text={'8'}/>
+          <Button text={'9'}/>
+          <Button text={'%'}/>
+        </section>
+      </div>
+      <div>
+        <section>
+          <Button text={'4'}/>
+          <Button text={'5'}/>
+          <Button text={'6'}/>
+          <Button text={'x'}/>
+        </section>
+      </div>
+      <div>
+        <section>
+          <Button text={'1'}/>
+          <Button text={'2'}/>
+          <Button text={'3'}/>
+          <Button text={'-'}/>
+        </section>
+      </div>
+      <div>
+        <section>
+          <Button text={'clr'}/>
+          <Button text={'0'}/>
+          <Button text={'='}/>
+          <Button text={'+'}/>
+        </section>
+      </div>
+
     </div>
+
   );
 }
 
