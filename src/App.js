@@ -1,13 +1,10 @@
 import './App.css';
+import { useState } from 'react';
 
-function Button({text}){
-  function handleClick() {
-    alert(text);
-  }
-  
+function Button({btnLabel, onClick}){
   return (
-    <button onClick={handleClick}>
-      {text}
+    <button onClick={onClick}>
+      {btnLabel}
     </button>
   );
 }
@@ -15,47 +12,58 @@ function Button({text}){
 function DisplayText({text}) {
   return (
     <h1>{text}</h1>
-      
   );
 }
 
 
 function App() {
+
+  const [disp, setDisp] = useState("0");
+
+  const numberClickHandler = (e) => {
+    e.preventDefault();
+    const value = e.target.innerHTML;
+    console.log(value);
+    setDisp(value);
+    // alert(value)
+  };
+
+
   return (
     <div class="main-container-calc">
       <div class="displayVal">
-      <DisplayText text={'display'}/>
+      <DisplayText text={disp}/>
       </div>
       <div>
         <section>
-          <Button text={'7'}/>
-          <Button text={'8'}/>
-          <Button text={'9'}/>
-          <Button text={'/'}/>
+          <Button btnLabel="7" onClick={numberClickHandler}/>
+          <Button btnLabel="8" onClick={numberClickHandler}/>
+          <Button btnLabel="9" onClick={numberClickHandler}/>
+          <Button btnLabel="/" onClick={numberClickHandler}/>
         </section>
       </div>
       <div>
         <section>
-          <Button text={'4'}/>
-          <Button text={'5'}/>
-          <Button text={'6'}/>
-          <Button text={'x'}/>
+          <Button btnLabel="4" onClick={numberClickHandler}/>
+          <Button btnLabel="5" onClick={numberClickHandler}/>
+          <Button btnLabel="6" onClick={numberClickHandler}/>
+          <Button btnLabel="x" onClick={numberClickHandler}/>
         </section>
       </div>
       <div>
         <section>
-          <Button text={'1'}/>
-          <Button text={'2'}/>
-          <Button text={'3'}/>
-          <Button text={'-'}/>
+          <Button btnLabel="1" onClick={numberClickHandler}/>
+          <Button btnLabel="2" onClick={numberClickHandler}/>
+          <Button btnLabel="3" onClick={numberClickHandler}/>
+          <Button btnLabel="-" onClick={numberClickHandler}/>
         </section>
       </div>
       <div>
         <section>
-          <Button text={'clr'}/>
-          <Button text={'0'}/>
-          <Button text={'='}/>
-          <Button text={'+'}/>
+          <Button btnLabel="clr" onClick={numberClickHandler}/>
+          <Button btnLabel="0" onClick={numberClickHandler}/>
+          <Button btnLabel="=" onClick={numberClickHandler}/>
+          <Button btnLabel="+" onClick={numberClickHandler}/>
         </section>
       </div>
 
