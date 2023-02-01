@@ -51,42 +51,92 @@ function DisplayText({text}) {
 function App() {
 
   const [disp, setDisp] = useState("0");
-  const [num1, setNum1] = useState("null");
-  const [num2, setNum2] = useState("0");
-  const [oper, setOper] = useState("null");
+  const [num1, setNum1] = useState(null);
+  const [num2, setNum2] = useState(null);
+  const [oper, setOper] = useState(null);
 
   const numberClickHandler = (e) => {
     e.preventDefault();
     const value = e.target.innerHTML;
 
-    if(oper === null){
-      setNum1(num1+value);
-      setDisp(disp+value);
+    if(oper===null){
+      if(num1 === null){
+        setNum1(value);
+        setDisp(value);
+      }else{
+        setNum1(num1+value);
+        setDisp(disp+value);
+      }
     }else{
-      setNum2(num1+value);
-      setDisp(disp+value);
+      if(num2 === null){
+        setNum2(value);
+        setDisp(value);
+      }else{
+        setNum2(num2+value);
+        setDisp(disp+value);
+      }
     }
-    // console.log(value);
-    // setNum1(value);
-    // setDisp(value);
-    // console.log(num1);
-    // console.log(disp)
-    // console.log(value)
-    // console.log((value)+num*10);
-    // alert(value)
-    console.log(num1);
-    console.log(disp);
+
+    console.log("num1: "+num1);
+    console.log("num2: "+num2);
+    console.log("disp: "+disp);
+    console.log("oper: "+oper);
+    console.log("-----------");
   };
   
-  const clearClickHandler = () => {
-    setNum1("null");
-    setNum2("null");
+  const clearClickHandler = (e) => {
+    e.preventDefault();
+    setNum1(null);
+    setNum2(null);
+    setOper(null);
     setDisp("0");
 
-    console.log(disp);
-    console.log(num1);
-    console.log(num2);
+    console.log("num1: "+num1);
+    console.log("num2: "+num2);
+    console.log("disp: "+disp);
+    console.log("oper: "+oper);
+    console.log("-----------");
   };
+
+  const operationClickHandler = (e) => {
+    e.preventDefault();
+    setNum1(disp);
+    const operVal = e.target.innerHTML; 
+    // if(oper===null)
+    setDisp(operVal);
+    setOper(operVal);
+
+    console.log("num1: "+num1);
+    console.log("num2: "+num2);
+    console.log("disp: "+disp);
+    console.log("oper: "+oper);
+    console.log("-----------");
+  }
+
+  const equalClickHandler = (e) => {
+    e.preventDefault();
+    if (oper === "+"){
+      setDisp(parseInt(num1) + parseInt(num2));
+      setNum1(parseInt(num1) + parseInt(num2));
+      setNum2(null);
+      setOper(null);
+    }else if(oper === "-"){
+      setDisp(parseInt(num1) - parseInt(num2));
+      setNum1(parseInt(num1) - parseInt(num2));
+      setNum2(null);
+      setOper(null);
+    }else if(oper === "x"){
+      setDisp(parseInt(num1) * parseInt(num2));
+      setNum1(parseInt(num1) * parseInt(num2));
+      setNum2(null);
+      setOper(null);
+    }else if(oper === "÷"){
+      setDisp(parseInt(num1) / parseInt(num2));
+      setNum1(parseInt(num1) / parseInt(num2));
+      setNum2(null);
+      setOper(null);
+    }
+  }
 
 
   return (
@@ -103,7 +153,7 @@ function App() {
               <Button btnLabel="7" onClick={numberClickHandler}/>
               <Button btnLabel="8" onClick={numberClickHandler}/>
               <Button btnLabel="9" onClick={numberClickHandler}/>
-              <ButtonOp btnLabel="÷" onClick={numberClickHandler}/>
+              <ButtonOp btnLabel="÷" onClick={operationClickHandler}/>
             </section>
           </div>
           <div>
@@ -111,7 +161,7 @@ function App() {
               <Button btnLabel="4" onClick={numberClickHandler}/>
               <Button btnLabel="5" onClick={numberClickHandler}/>
               <Button btnLabel="6" onClick={numberClickHandler}/>
-              <ButtonOp btnLabel="x" onClick={numberClickHandler}/>
+              <ButtonOp btnLabel="x" onClick={operationClickHandler}/>
             </section>
           </div>
           <div>
@@ -119,15 +169,15 @@ function App() {
               <Button btnLabel="1" onClick={numberClickHandler}/>
               <Button btnLabel="2" onClick={numberClickHandler}/>
               <Button btnLabel="3" onClick={numberClickHandler}/>
-              <ButtonOp btnLabel="-" onClick={numberClickHandler}/>
+              <ButtonOp btnLabel="-" onClick={operationClickHandler}/>
             </section>
           </div>
           <div>
             <section>
               <ButtonClear btnLabel="clr" onClick={clearClickHandler}/>
               <Button btnLabel="0" onClick={numberClickHandler}/>
-              <ButtonEqual btnLabel="=" onClick={numberClickHandler}/>
-              <ButtonPlus btnLabel="+" onClick={numberClickHandler}/>
+              <ButtonEqual btnLabel="=" onClick={equalClickHandler}/>
+              <ButtonPlus btnLabel="+" onClick={operationClickHandler}/>
             </section>
           </div>
         </div>
