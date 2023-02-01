@@ -42,12 +42,22 @@ button{
   border-radius: 0 0 18px 18px;
 }
 
+.btnNum{
+  background-color: #3a3a3a;
+  color: #fff;
+}
+
+.btnNum:hover{
+  background-color: #2e2e2e;
+  color: #fff;
+}
+
 .btnOp{
   background-color: #fff;
 }
 
-.btnNum{
-  background-color: #3a3a3a;
+.btnOp:hover{
+  background-color: rgb(209, 209, 209);
 }
 
 .btnPlus{
@@ -56,12 +66,26 @@ button{
   border: none;
 }
 
+.btnPlus:hover{
+  background-color: rgb(209, 209, 209);
+}
+
 .btnClr{
   background-color: #FFA500;
   border-radius: 0 0 0 18px;
   border: none;
 }
 
+.btnClr:hover{
+  background-color: #ce8600;
+  color: #fff;
+}
+
 .btnEq{
   background-color: #FFA500;
+}
+
+.btnEq:hover{
+  background-color: #ce8600;
+  color: #fff;
 }
